@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Plickr</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="scan">Scan</string>
+    <string name="copy">Copy</string>
+    <string name="about_us">About Plickr</string>
+    <string name="report_bug">Report Bug</string>
+    <string name="title_activity_browser">Plickr Browser</string>
+    <string name="title_activity_splash">Splash</string>
+    <string name="title_activity_about">About Plickr</string>
+    <string name="action_settings">Settings</string>
+
+</resources>

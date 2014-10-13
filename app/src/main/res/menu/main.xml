@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    >
+    <item android:id="@+id/copy_clipboard"
+        android:title="@string/copy"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_action_copy"
+        android:showAsAction="always" />
+    <item android:id="@+id/scan_again"
+        android:title="@string/scan"
+        android:orderInCategory="100"
+        android:icon="@drawable/scan_icon"
+        android:showAsAction="always" />
+
+    <item
+        android:id="@+id/report_bug"
+        android:title="@string/report_bug"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item
+        android:id="@+id/about_plickr"
+        android:title="@string/about_us"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+</menu>
