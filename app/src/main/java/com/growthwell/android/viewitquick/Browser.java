@@ -93,11 +93,11 @@ if(url!=""){
         switch(item.getItemId()){
 
             case R.id.about_plickr:
-                startActivity(new Intent(Browser.this,About.class));
+                startActivity(new Intent(Browser.this,ABout.class));
 
                 return true;
             case R.id.report_bug:
-                startActivity(new Intent(Browser.this,About.class));
+                startActivity(new Intent(Browser.this,ABout.class));
 
                 return true;
 

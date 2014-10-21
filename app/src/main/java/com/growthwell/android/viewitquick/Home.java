@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.growthwell.android.fragment.AboutFragment;
+import com.growthwell.android.fragment.FragmentCreateFromOption;
 import com.growthwell.android.fragment.LoginFragment;
 import com.growthwell.android.fragment.ScanFragment;
 import com.growthwell.android.util.Global;
@@ -102,8 +103,8 @@ public class Home extends Activity implements AdapterView.OnItemClickListener {
             case 1: frag=new AboutFragment();
                 tag=Global.FRAGMENT_TAG_ABOUT;
                 break;
-            case 2: frag=new AboutFragment();
-                tag=Global.FRAGMENT_TAG_ABOUT;
+            case 2: frag=new FragmentCreateFromOption();
+                tag=Global.FRAGMENT_TAG_CREATE;
                 break;
             case 3: frag=new LoginFragment();
                 tag=Global.FRAGMENT_TAG_LOGIN;

@@ -81,7 +81,7 @@ inflater.inflate(R.menu.main,menu);
 
                 return true;
             case R.id.about_plickr:
-                startActivity(new Intent(getActivity(),About.class));
+                startActivity(new Intent(getActivity(),ABout.class));
 
                 return true;
             case R.id.report_bug:

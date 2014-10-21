@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 
-public class About extends Activity {
+public class ABout extends Activity {
 
     TextView visit_growthwell;
     TextView visit_plickr;

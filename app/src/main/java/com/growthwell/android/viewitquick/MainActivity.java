@@ -180,11 +180,11 @@ public class MainActivity extends Activity {
         switch(item.getItemId()){
 
             case R.id.about_plickr:
-                startActivity(new Intent(MainActivity.this,About.class));
+                startActivity(new Intent(MainActivity.this,ABout.class));
 
                 return true;
             case R.id.report_bug:
-                startActivity(new Intent(MainActivity.this,About.class));
+                startActivity(new Intent(MainActivity.this,ABout.class));
 
                 return true;
 
