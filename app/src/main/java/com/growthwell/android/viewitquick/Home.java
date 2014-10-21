@@ -47,11 +47,11 @@ public class Home extends Activity implements AdapterView.OnItemClickListener {
          list_array= new String[]{"Scan Now", "Home", "Create", "Login", "About Plickr"};
 
         ss_al=new ArrayList<SidebarAdapter.SidebarStruct>();
-        ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.scan_icon));
+        ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.ic_scan));
         ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.ic_home));
-        ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.ic_add));
-        ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.ic_lock));
-        ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.ic_about));
+        ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.ic_edit));
+        ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.ic_login));
+        ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.ic_camera));
 
         slide_list.setAdapter(new SidebarAdapter(this, R.layout.sidebar_layout_row, ss_al));
 
