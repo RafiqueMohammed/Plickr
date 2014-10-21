@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/imageView" />
+        android:id="@+id/row_icon" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,9 +23,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Plickr.in"
         android:id="@+id/textView2"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView" />
+        android:layout_alignBottom="@+id/row_icon"
+        android:layout_alignRight="@+id/row_icon"
+        android:layout_alignEnd="@+id/row_icon" />
 
 
 </RelativeLayout>

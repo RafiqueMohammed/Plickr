@@ -11,5 +11,17 @@
     <string name="title_activity_splash">Splash</string>
     <string name="title_activity_about">About Plickr</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_report">Report Us</string>
+    <string name="title_activity_internet_connection">InternetConnection</string>
+    <string name="title_activity_xing">XingActivity</string>
+    <string name="title_activity_capture">CaptureAct</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="navigation_drawer_open">Open Menu</string>
+    <string name="navigation_drawer_close">Close Menu</string>
+    <string name="action_example">Example action</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

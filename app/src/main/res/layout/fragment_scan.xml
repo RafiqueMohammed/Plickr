@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ScanPage"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="com.growthwell.android.fragment.ScanFragment">
+
+    <ImageButton
+        android:id="@+id/btn_scan_camera"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@android:drawable/ic_menu_camera"
+    android:background="#555"
+    android:layout_gravity="center_vertical|center"
+    android:padding="10dp"/>
+    <TextView
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:layout_gravity="center_vertical|center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="START PLICKRING"/>
+
+</LinearLayout>

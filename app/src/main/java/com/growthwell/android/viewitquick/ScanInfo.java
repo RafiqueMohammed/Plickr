@@ -1,48 +1,69 @@
 package com.growthwell.android.viewitquick;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.growthwell.android.util.Global;
 
 
 /**
  * Created by Rafique on 11/10/2014.
  */
-public class ScanInfo extends Activity {
+public class ScanInfo extends Fragment {
 
     TextView scan_output;
+    WebView wv;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.scan_info);
-        scan_output= (TextView) findViewById(R.id.qr_txt_result_output);
-        Intent i=getIntent();
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.scan_info,container,false);
+        scan_output= (TextView) view.findViewById(R.id.qr_txt_result_output);
+        wv= (WebView) view.findViewById(R.id.web_output);
+        Bundle data=getArguments();
         String out="";
-        if(i.getStringExtra("ScanResult")!=null){
-            out=i.getStringExtra("ScanResult");
+        if(data.getString("SCAN_RESULT")!=null){
+            out=data.getString("SCAN_RESULT");
         }else{
             out="Scan result is empty";
         }
+        wv.loadData(out,"text/html","UTF-8");
 
         scan_output.setText(out);
 
-
+        return view;
     }
+
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater m=getMenuInflater();
-        m.inflate(R.menu.main,menu);
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+inflater.inflate(R.menu.main,menu);
+        super.onCreateOptionsMenu(menu, inflater);
 
-        return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -50,17 +71,26 @@ public class ScanInfo extends Activity {
             case R.id.copy_clipboard:
 
                                //place your TextView's text in clipboard
-                final ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                final ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
                 if(!scan_output.getText().equals("")){
                     clipboard.setText(scan_output.getText().toString());
-                    Toast.makeText(ScanInfo.this,"Copied Successful",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"Copied Successful",Toast.LENGTH_LONG).show();
                 }else{
-                    Toast.makeText(ScanInfo.this,"Blank cannot be copied",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"Blank cannot be copied",Toast.LENGTH_LONG).show();
                 }
 
+                return true;
+            case R.id.about_plickr:
+                startActivity(new Intent(getActivity(),About.class));
 
-                break;
+                return true;
+            case R.id.report_bug:
+                startActivity(new Intent(getActivity(),Report.class));
+
+                return true;
+
+            default: return true;
         }
-        return super.onOptionsItemSelected(item);
+
     }
 }

@@ -1,15 +1,12 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    tools:context=".MainActivity"
-    android:background="#222">
+    android:background="#222"
+    android:keepScreenOn="true">
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/cameraPreview">
-
     </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +17,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView"
+            android:id="@+id/row_icon"
             android:gravity="center"
             android:src="@drawable/hand_camera" />
 
@@ -29,9 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Plickr is Scanning"
+            android:text="Plickr Is Scanning"
             android:textColor="#fff"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_gravity="center_horizontal" />
@@ -42,7 +39,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Please hold still to scan \nPoint your camera to\nthe marked object"
+            android:text="Please hold still to scan \nPoint your camera to the marked object"
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>

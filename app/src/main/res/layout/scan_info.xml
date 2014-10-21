@@ -25,12 +25,20 @@
         <LinearLayout
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:minHeight="150dp"
+            android:padding="7dp"
+            android:orientation="vertical"
             android:background="#fff">
+            <WebView
+                android:id="@+id/web_output"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                </WebView>
             <TextView
-                android:padding="5dp"
-                android:text=""
+android:visibility="gone"
+                android:lineSpacingExtra="5dp"
+                android:text="er gewrgrgerg erg wergwergewr gwerg wehewth htr wrht wrt rtherht rthrh rehterhrth rethreterht rht rethrthrej tykjyukryikiuruilui"
                 android:id="@+id/qr_txt_result_output"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

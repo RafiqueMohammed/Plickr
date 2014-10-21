@@ -2,11 +2,13 @@ package com.growthwell.android.viewitquick;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +78,32 @@ if(url!=""){
 }else{
     Toast.makeText(this,"No url found",Toast.LENGTH_LONG).show();
 }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater m=getMenuInflater();
+        m.inflate(R.menu.browser,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+
+            case R.id.about_plickr:
+                startActivity(new Intent(Browser.this,About.class));
+
+                return true;
+            case R.id.report_bug:
+                startActivity(new Intent(Browser.this,About.class));
+
+                return true;
+
+            default: return true;
+        }
+
     }
 
     class BrowserWebClient extends WebViewClient{

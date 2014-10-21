@@ -1,25 +1,22 @@
 package com.growthwell.android.viewitquick;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import net.sourceforge.zbar.Config;
 import net.sourceforge.zbar.Image;
 import net.sourceforge.zbar.ImageScanner;
 import net.sourceforge.zbar.Symbol;
 import net.sourceforge.zbar.SymbolSet;
-
-import java.util.HashMap;
 
 
 public class MainActivity extends Activity {
@@ -86,7 +83,9 @@ public class MainActivity extends Activity {
             mCamera.stopPreview();
 
         }
-        Log.i("ARR","OnStop");
+        setResult(RESULT_CANCELED);
+        finish();
+
     }
 
     @Override
@@ -153,7 +152,11 @@ public class MainActivity extends Activity {
                    output+=sym.getData();
                     barcodeScanned = true;
                 }
-                ResultAction.fireIntent(MainActivity.this,output);
+               // ResultAction.fireIntent(MainActivity.this,output);
+                Intent i = new Intent();
+                i.putExtra("SCAN_RESULT",output);
+                setResult(RESULT_OK,i);
+                finish();
             }
         }
     };
@@ -164,4 +167,29 @@ public class MainActivity extends Activity {
             autoFocusHandler.postDelayed(doAutoFocus, 1000);
         }
     };
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater m=getMenuInflater();
+        m.inflate(R.menu.camera_preview,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+
+            case R.id.about_plickr:
+                startActivity(new Intent(MainActivity.this,About.class));
+
+                return true;
+            case R.id.report_bug:
+                startActivity(new Intent(MainActivity.this,About.class));
+
+                return true;
+
+            default: return true;
+        }
+
+    }
 }
