@@ -1,0 +1,167 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.growthwell.android.QRLayouts.ContactAddress"
+   android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#444"
+    >
+<LinearLayout
+    android:padding="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="Contact Address"
+    style="@style/header_green"
+    android:layout_marginBottom="15dp"
+    />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="First Name"
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+        <EditText
+            android:id="@+id/in_fname"
+            style="@style/font_green"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="@drawable/edittext_dark_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Last Name"
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+        <EditText
+            android:id="@+id/in_lname"
+            style="@style/font_green"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="@drawable/edittext_dark_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Mobile"
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+        <EditText
+            android:id="@+id/in_mobile"
+            style="@style/font_green"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="@drawable/edittext_dark_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Landline"
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+        <EditText
+            android:id="@+id/in_landline"
+            style="@style/font_green"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="@drawable/edittext_dark_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Email"
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+        <EditText
+            android:id="@+id/in_email"
+            style="@style/font_green"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="@drawable/edittext_dark_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Company"
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+        <EditText
+            android:id="@+id/in_company"
+            style="@style/font_green"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="@drawable/edittext_dark_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Website"
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+        <EditText
+            android:id="@+id/in_website"
+            android:hint="http://"
+            style="@style/font_green"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="@drawable/edittext_dark_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_create_qr"
+        android:layout_marginTop="10dp"
+        android:text="Generate QR"
+        android:textColor="#333"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_green"/>
+</LinearLayout>
+
+
+</ScrollView>

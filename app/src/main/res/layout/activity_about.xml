@@ -6,7 +6,7 @@
     android:layout_gravity="center"
     android:gravity="top"
     android:background="#ddd"
-    tools:context="com.growthwell.android.viewitquick.About">
+    tools:context="com.growthwell.android.trash.About">
         <LinearLayout
             android:padding="12dp"
             android:layout_width="match_parent"

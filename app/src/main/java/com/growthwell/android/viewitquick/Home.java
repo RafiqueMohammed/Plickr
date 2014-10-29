@@ -13,8 +13,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.growthwell.android.QRLayouts.PlainText;
 import com.growthwell.android.fragment.AboutFragment;
+
+import com.growthwell.android.fragment.GeneratedQRFragment;
 import com.growthwell.android.fragment.FragmentCreateFromOption;
+
 import com.growthwell.android.fragment.LoginFragment;
 import com.growthwell.android.fragment.ScanFragment;
 import com.growthwell.android.util.Global;
@@ -48,11 +52,11 @@ public class Home extends Activity implements AdapterView.OnItemClickListener {
          list_array= new String[]{"Scan Now", "Home", "Create", "Login", "About Plickr"};
 
         ss_al=new ArrayList<SidebarAdapter.SidebarStruct>();
-        ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.ic_scan));
-        ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.ic_home));
-        ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.ic_edit));
-        ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.ic_login));
-        ss_al.add(new SidebarAdapter.SidebarStruct("",R.drawable.ic_camera));
+        ss_al.add(new SidebarAdapter.SidebarStruct(R.drawable.ic_scan));
+        ss_al.add(new SidebarAdapter.SidebarStruct(R.drawable.ic_home));
+        ss_al.add(new SidebarAdapter.SidebarStruct(R.drawable.ic_edit));
+        ss_al.add(new SidebarAdapter.SidebarStruct(R.drawable.ic_login));
+        ss_al.add(new SidebarAdapter.SidebarStruct(R.drawable.ic_camera));
 
         slide_list.setAdapter(new SidebarAdapter(this, R.layout.sidebar_layout_row, ss_al));
 
@@ -100,11 +104,14 @@ public class Home extends Activity implements AdapterView.OnItemClickListener {
                 frag=new ScanFragment();
                 tag=Global.FRAGMENT_TAG_SCAN;
             break;
-            case 1: frag=new AboutFragment();
+
+            case 1:
+                frag=new PlainText();
                 tag=Global.FRAGMENT_TAG_ABOUT;
-                break;
+break;
             case 2: frag=new FragmentCreateFromOption();
                 tag=Global.FRAGMENT_TAG_CREATE;
+
                 break;
             case 3: frag=new LoginFragment();
                 tag=Global.FRAGMENT_TAG_LOGIN;

@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.growthwell.android.QRLayouts.PlainText"
+    android:orientation="vertical"
+    android:background="#333"
+    >
+
+<EditText
+    android:textColor="@color/green"
+    android:id="@+id/qr_input_plain_text"
+    android:hint="Write something here.."
+    android:gravity="top|start"
+    android:padding="4dp"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:lineSpacingExtra="3dp"
+    android:layout_weight="8"/>
+
+    <Button
+        android:background="@drawable/btn_green"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="Create QR"
+        android:layout_weight="1"
+        android:id="@+id/btn_create_qr" />
+
+</LinearLayout>

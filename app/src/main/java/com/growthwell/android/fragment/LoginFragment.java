@@ -15,12 +15,20 @@ import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.growthwell.android.util.InternetConnection;
+import com.growthwell.android.util.L;
 import com.growthwell.android.viewitquick.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
-    Button register,login;
+    Button register,login,verify_btn;
     LinearLayout step1,step2,circle;
     ProgressBar loading;
 
@@ -32,8 +40,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 View v=inflater.inflate(R.layout.fragment_login,container,false);
         login= (Button) v.findViewById(R.id.btn_login);
         register= (Button) v.findViewById(R.id.btn_register_account);
+        verify_btn= (Button) v.findViewById(R.id.btn_email_verify);
         login.setOnClickListener(this);
         register.setOnClickListener(this);
+        verify_btn.setOnClickListener(this);
         step1= (LinearLayout) v.findViewById(R.id.login_step_1_container);
         step2= (LinearLayout) v.findViewById(R.id.login_step_2_container);
         loading= (ProgressBar) v.findViewById(R.id.login_icon_loading);
@@ -44,8 +54,8 @@ View v=inflater.inflate(R.layout.fragment_login,container,false);
         Display display = manager.getDefaultDisplay();
         Point point = new Point();
         display.getSize(point);
-        int width = point.x*8/10;
-        int height = point.y*8/10;
+        int width = point.x*18/20;
+        int height = point.y*18/20;
         int smallerDimension = width < height ? width : height;
 
         LinearLayout.LayoutParams p = (LinearLayout.LayoutParams) circle.getLayoutParams();
@@ -67,6 +77,34 @@ step2.setVisibility(View.VISIBLE);
 
                 break;
             case R.id.btn_email_verify:
+                InternetConnection c=new InternetConnection();
+                JSONObject result=new JSONObject();
+               if(c.isConnectingToInternet(getActivity())){
+
+                   InternetConnection.connect conn=new InternetConnection.connect();
+                   try {
+                       loading.setVisibility(View.VISIBLE);
+                       result=conn.execute(new String[]{"http://192.168.1.200/plickr"}).get();
+if(result.getString("status").equals("ok")){
+    loading.setVisibility(View.INVISIBLE);
+    L.c("status ok");
+}else{
+    L.c("Status not ok");
+}
+                   L.t(getActivity(),"Successfully executed");
+                   } catch (InterruptedException e) {
+                       L.c("InterruptedException "+e.toString());
+                       loading.setVisibility(View.INVISIBLE);
+                   } catch (ExecutionException e) {
+                       L.c("ExecutionException "+e.toString());
+                       loading.setVisibility(View.INVISIBLE);
+                   } catch (JSONException e) {
+                       e.printStackTrace();
+                   }
+               }else{
+                   L.t(getActivity(), "Connection Failed");
+
+               }
                 break;
         }
     }

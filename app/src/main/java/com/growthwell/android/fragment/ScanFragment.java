@@ -1,22 +1,26 @@
 package com.growthwell.android.fragment;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
+import com.google.zxing.Result;
+import com.google.zxing.client.result.ParsedResult;
+import com.google.zxing.client.result.ResultParser;
+import com.google.zxing.qrcode.QRCodeReader;
+import com.google.zxing.qrcode.encoder.QRCode;
+import com.growthwell.android.util.Contents;
 import com.growthwell.android.util.Global;
+import com.growthwell.android.util.QREncoder;
 import com.growthwell.android.viewitquick.Browser;
-import com.growthwell.android.viewitquick.MainActivity;
+import com.growthwell.android.trash.MainActivity;
 import com.growthwell.android.viewitquick.R;
-import com.growthwell.android.viewitquick.ScanInfo;
 
+import java.text.Format;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -69,7 +73,8 @@ public class ScanFragment extends Fragment {
 
                     getActivity().startActivity(i);
                 }else{
-                    ScanInfo s=new ScanInfo();
+
+                    ScanInfoFragment s=new ScanInfoFragment();
                     s.setArguments(data.getExtras());
                     getActivity().getFragmentManager()
                             .beginTransaction().replace(R.id.frame_container, s, Global.FRAGMENT_TAG_SCAN).commit();

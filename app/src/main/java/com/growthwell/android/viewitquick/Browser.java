@@ -1,12 +1,9 @@
 package com.growthwell.android.viewitquick;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.ClipboardManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,6 +16,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.growthwell.android.trash.About;
 
 
 public class Browser extends Activity {
@@ -93,11 +92,11 @@ if(url!=""){
         switch(item.getItemId()){
 
             case R.id.about_plickr:
-                startActivity(new Intent(Browser.this,ABout.class));
+                startActivity(new Intent(Browser.this,About.class));
 
                 return true;
             case R.id.report_bug:
-                startActivity(new Intent(Browser.this,ABout.class));
+                startActivity(new Intent(Browser.this,About.class));
 
                 return true;
 

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
     android:divider="@android:drawable/divider_horizontal_bright"
     >
 <LinearLayout
+    android:layout_gravity="center"
     android:orientation="horizontal"
-    android:padding="5dp"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <ImageView
         android:layout_width="wrap_content"
@@ -18,7 +19,7 @@
         android:src="@drawable/ic_launcher"
         android:padding="5dp"/>
 
-    <TextView
+   <!-- <TextView
         android:gravity="center_vertical"
         android:padding="5dp"
         android:layout_marginTop="15dp"
@@ -27,9 +28,10 @@
         android:text="Medium Text"
         android:textColor="#99bb00"
         android:textSize="18sp"
-        android:id="@+id/menu_title" />
+        android:id="@+id/menu_title" />-->
     </LinearLayout>
     <View
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="#555"/>

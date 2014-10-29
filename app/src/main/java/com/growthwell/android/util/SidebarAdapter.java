@@ -37,8 +37,8 @@ public class SidebarAdapter extends ArrayAdapter {
             view=inflater.inflate(R.layout.sidebar_layout_row,null);
         }
 
-        title= (TextView) view.findViewById(R.id.menu_title);
-        title.setText(struct_list.get(i).getTitle());
+      //  title= (TextView) view.findViewById(R.id.menu_title);
+      //  title.setText(struct_list.get(i).getTitle());
         icon= (ImageView) view.findViewById(R.id.menu_icon);
         icon.setImageResource(struct_list.get(i).getIcon());
         return view;
@@ -53,6 +53,9 @@ public class SidebarAdapter extends ArrayAdapter {
 
         public SidebarStruct(String title, int icon) {
             this.title = title;
+            this.icon = icon;
+        }
+        public SidebarStruct(int icon) {
             this.icon = icon;
         }
 

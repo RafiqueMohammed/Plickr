@@ -17,6 +17,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.growthwell.android.QRLayouts.ContactAddress;
+import com.growthwell.android.QRLayouts.PlainText;
+import com.growthwell.android.QRLayouts.WebAddress;
+import com.growthwell.android.util.Global;
 import com.growthwell.android.viewitquick.R;
 
 import java.util.ArrayList;
@@ -29,8 +33,8 @@ public class FragmentCreateFromOption extends Fragment implements AdapterView.On
 
     ListView list;
     ArrayList<OptionStructure> list_data;
-    int[] list_icon = {R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher,R.drawable.ic_launcher};
-    String[] list_titles = {"bussiness card","contact sharing","sms","web address","plain text","zippr"};
+    int[] list_icon = {R.drawable.ic_document,R.drawable.ic_vcard,R.drawable.ic_contact_sharing,R.drawable.ic_chat,R.drawable.ic_globe,R.drawable.ic_location};
+    String[] list_titles = {"Plain Text","Business Card","Contact Sharing","SMS","Web URL","Zippr"};
     public FragmentCreateFromOption() {
         // Required empty public constructor
     }
@@ -43,16 +47,16 @@ public class FragmentCreateFromOption extends Fragment implements AdapterView.On
         View v=inflater.inflate(R.layout.fragment_create_from_option, container, false);
         list_data=new ArrayList<OptionStructure>();
         list_data.add(new OptionStructure(0,list_titles[0],list_icon[0]));
-        list_data.add(new OptionStructure(1,list_titles[1],list_icon[0]));
-        list_data.add(new OptionStructure(2,list_titles[2],list_icon[0]));
-        list_data.add(new OptionStructure(3,list_titles[3],list_icon[0]));
-        list_data.add(new OptionStructure(4,list_titles[4],list_icon[0]));
-        list_data.add(new OptionStructure(5,list_titles[5],list_icon[0]));
+        list_data.add(new OptionStructure(1,list_titles[1],list_icon[1]));
+        list_data.add(new OptionStructure(2,list_titles[2],list_icon[2]));
+        list_data.add(new OptionStructure(3,list_titles[3],list_icon[3]));
+        list_data.add(new OptionStructure(4,list_titles[4],list_icon[4]));
+        list_data.add(new OptionStructure(5,list_titles[5],list_icon[5]));
 
 
         list = (ListView) v.findViewById(R.id.listview);
-        CustomAdaptor adaptor = new CustomAdaptor(getActivity().getApplicationContext(),list_data);
-        list.setAdapter(adaptor);
+        CustomAdapter adapter = new CustomAdapter(getActivity().getApplicationContext(),list_data);
+        list.setAdapter(adapter);
         list.setOnItemClickListener(this);
 
 
@@ -62,8 +66,28 @@ public class FragmentCreateFromOption extends Fragment implements AdapterView.On
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 OptionStructure opt= (OptionStructure) adapterView.getItemAtPosition(i);
-        Toast.makeText(getActivity(),"You have click on id "+opt.getId(),Toast.LENGTH_LONG).show();
-    }
+        switch(opt.getId()){
+            case 0:
+                Global.swapFragment(getActivity(),new PlainText(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_PLAIN);
+                break;
+            case 1:
+                Global.swapFragment(getActivity(),new WebAddress(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_URL);
+                break;
+            case 2:
+                Global.swapFragment(getActivity(),new PlainText(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_PLAIN);
+                break;
+            case 3:
+                Global.swapFragment(getActivity(),new ContactAddress(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_CONTACT);
+                break;
+            case 4:
+                Global.swapFragment(getActivity(),new PlainText(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_PLAIN);
+                break;
+            case 5:
+                Global.swapFragment(getActivity(),new PlainText(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_PLAIN);
+                break;
+
+        }
+}
 }
 
 class OptionStructure
@@ -93,12 +117,12 @@ class OptionStructure
     }
 }
 
-class CustomAdaptor extends BaseAdapter
+class CustomAdapter extends BaseAdapter
 {
     Context context;
     ArrayList<OptionStructure> mylist;
 
-    CustomAdaptor(Context c,ArrayList<OptionStructure> l)
+    CustomAdapter(Context c,ArrayList<OptionStructure> l)
     {
         this.context=c;
         mylist=l;
