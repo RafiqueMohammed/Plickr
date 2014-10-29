@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.growthwell.android.QRLayouts.ContactAddress;
 import com.growthwell.android.QRLayouts.PlainText;
+import com.growthwell.android.QRLayouts.SMSLayout;
 import com.growthwell.android.QRLayouts.WebAddress;
 import com.growthwell.android.util.Global;
 import com.growthwell.android.viewitquick.R;
@@ -47,7 +48,7 @@ public class FragmentCreateFromOption extends Fragment implements AdapterView.On
         View v=inflater.inflate(R.layout.fragment_create_from_option, container, false);
         list_data=new ArrayList<OptionStructure>();
         list_data.add(new OptionStructure(0,list_titles[0],list_icon[0]));
-        list_data.add(new OptionStructure(1,list_titles[1],list_icon[1]));
+        //list_data.add(new OptionStructure(1,list_titles[1],list_icon[1]));
         list_data.add(new OptionStructure(2,list_titles[2],list_icon[2]));
         list_data.add(new OptionStructure(3,list_titles[3],list_icon[3]));
         list_data.add(new OptionStructure(4,list_titles[4],list_icon[4]));
@@ -74,13 +75,13 @@ OptionStructure opt= (OptionStructure) adapterView.getItemAtPosition(i);
                 Global.swapFragment(getActivity(),new WebAddress(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_URL);
                 break;
             case 2:
-                Global.swapFragment(getActivity(),new PlainText(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_PLAIN);
-                break;
-            case 3:
                 Global.swapFragment(getActivity(),new ContactAddress(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_CONTACT);
                 break;
+            case 3:
+                Global.swapFragment(getActivity(),new SMSLayout(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_SMS);
+                break;
             case 4:
-                Global.swapFragment(getActivity(),new PlainText(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_PLAIN);
+                Global.swapFragment(getActivity(),new WebAddress(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_PLAIN);
                 break;
             case 5:
                 Global.swapFragment(getActivity(),new PlainText(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_PLAIN);

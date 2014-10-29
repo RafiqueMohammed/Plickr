@@ -11,13 +11,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="Contact Address"
-    style="@style/header_green"
-    android:layout_marginBottom="15dp"
-    />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Contact Address"
+            style="@style/header_green"
+            android:layout_marginBottom="15dp"
+            />
+        <ImageButton
+            android:background="#444"
+            android:id="@+id/btn_pick_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_contact_sharing"/>
+        </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +40,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="First Name"
+            android:text="Full Name"
             android:layout_margin="5dp"
             style="@style/font_green"/>
         <EditText
@@ -38,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,11 +60,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Last Name"
+            android:text="Phone Number"
             android:layout_margin="5dp"
             style="@style/font_green"/>
         <EditText
-            android:id="@+id/in_lname"
+            android:id="@+id/in_phone"
             style="@style/font_green"
             android:layout_margin="5dp"
             android:padding="10dp"
@@ -57,44 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Mobile"
-            android:layout_margin="5dp"
-            style="@style/font_green"/>
-        <EditText
-            android:id="@+id/in_mobile"
-            style="@style/font_green"
-            android:layout_margin="5dp"
-            android:padding="10dp"
-            android:background="@drawable/edittext_dark_bg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Landline"
-            android:layout_margin="5dp"
-            style="@style/font_green"/>
-        <EditText
-            android:id="@+id/in_landline"
-            style="@style/font_green"
-            android:layout_margin="5dp"
-            android:padding="10dp"
-            android:background="@drawable/edittext_dark_bg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
