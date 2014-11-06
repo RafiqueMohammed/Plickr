@@ -17,7 +17,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.growthwell.android.trash.About;
+import com.growthwell.android.fragment.AboutFragment;
 
 
 public class Browser extends Activity {
@@ -64,6 +64,7 @@ public class Browser extends Activity {
         browser= (WebView) findViewById(R.id.browser_view);
         browser.getSettings().setJavaScriptEnabled(true);
         browser.getSettings().setSupportZoom(true);
+
         //browser.getSettings().setBuiltInZoomControls(true);
         browser.setWebViewClient(new BrowserWebClient());
         browser.setWebChromeClient(new BrowserClient());
@@ -91,12 +92,8 @@ if(url!=""){
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
 
-            case R.id.about_plickr:
-                startActivity(new Intent(Browser.this,About.class));
-
-                return true;
-            case R.id.report_bug:
-                startActivity(new Intent(Browser.this,About.class));
+            case R.id.scan_again:
+                startActivity(new Intent(Browser.this,MainActivity.class));
 
                 return true;
 

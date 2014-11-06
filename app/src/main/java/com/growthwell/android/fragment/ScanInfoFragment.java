@@ -15,9 +15,8 @@ import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.growthwell.android.trash.About;
+import com.growthwell.android.viewitquick.MainActivity;
 import com.growthwell.android.viewitquick.R;
-import com.growthwell.android.viewitquick.Report;
 
 
 /**
@@ -39,6 +38,7 @@ public class ScanInfoFragment extends Fragment {
         View view=inflater.inflate(R.layout.scan_info,container,false);
         scan_output= (TextView) view.findViewById(R.id.qr_txt_result_output);
         wv= (WebView) view.findViewById(R.id.web_output);
+        wv.setHorizontalScrollBarEnabled(false);
         Bundle data=getArguments();
         String out="";
         if(data.getString("SCAN_RESULT")!=null){
@@ -77,12 +77,8 @@ inflater.inflate(R.menu.main,menu);
                 }
 
                 return true;
-            case R.id.about_plickr:
-                startActivity(new Intent(getActivity(),About.class));
-
-                return true;
-            case R.id.report_bug:
-                startActivity(new Intent(getActivity(),Report.class));
+            case R.id.scan_again:
+                startActivity(new Intent(getActivity(),MainActivity.class));
 
                 return true;
 

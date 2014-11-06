@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.growthwell.android.fragment.GeneratedQRFragment;
 import com.growthwell.android.util.Global;
@@ -23,6 +24,7 @@ public class PlainText extends Fragment {
 
     EditText text;
     Button btn;
+    TextView why;
 
     public PlainText() {
         // Required empty public constructor
@@ -36,6 +38,13 @@ public class PlainText extends Fragment {
         View v=inflater.inflate(R.layout.qr_layouts_plain_text, container, false);
         text= (EditText) v.findViewById(R.id.qr_input_plain_text);
         btn= (Button) v.findViewById(R.id.btn_create_qr);
+        why= (TextView) v.findViewById(R.id.recommend_why);
+        why.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Global.alert(getActivity(),getResources().getString(R.string.why),true);
+            }
+        });
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

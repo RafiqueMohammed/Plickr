@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="top"
-    android:background="#ddd"
+    android:background="#444"
     tools:context="com.growthwell.android.trash.About">
         <LinearLayout
             android:padding="12dp"
@@ -23,23 +23,27 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/plickr_128"
+        android:src="@drawable/plickr"
+        android:scaleType="fitCenter"
         />
+
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="VERSION 1.0.1"
-        android:textSize="15sp"
-        android:gravity="right"/>
+        android:layout_gravity="right"
+        android:textSize="15sp"/>
     <TextView
         android:id="@+id/visit_plickr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="www.plickr.in"
-        android:textSize="15sp"
-        android:gravity="left"
+        android:text="plickr.in"
+        android:textSize="22sp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal|center"
         android:textStyle="bold"
-        android:clickable="true" android:textColor="#99BB00"/>
+        android:clickable="true" style="@style/font_green"/>
+
 
 
     </LinearLayout>
@@ -56,20 +60,47 @@
              <TextView
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
-                 android:text="ABOUT GROWTHWELL"
+                 android:text="POWERED BY"
                  android:textStyle="bold"
                  android:textSize="18sp"
                  android:layout_marginBottom="10dp"
                  />
-                 <TextView
-                 android:lineSpacingExtra="3dp"
-                 android:padding="7dp"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:text="GrowthWell Consulting Pvt Ltd is one of the premiere Offshore Outsourcing and Global IT Consulting and Internet solutions provider. We specialize in building tailored, innovative strategies that harness the power of the Web for your business."
-                 android:textSize="15sp"
-                 />
+                 <LinearLayout
+                     android:gravity="center"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal">
+                     <ImageView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:src="@drawable/ic_growthwell"/>
+                     <LinearLayout
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:orientation="vertical">
+                         <TextView
+                             android:paddingTop="4dp"
+                             android:layout_marginLeft="5dp"
+                             android:layout_marginStart="5dp"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:text="GROWTHWELL"
+                             android:textSize="20sp"
+                             />
+                         <TextView
+                             android:layout_marginStart="6dp"
+                             android:layout_marginLeft="6dp"
+                             android:lineSpacingExtra="3dp"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:text="Consulting Pvt. Ltd."
+                             android:textSize="13sp"
+                             />
+                         </LinearLayout>
+                     </LinearLayout>
              <TextView
+                 android:gravity="right|end"
+                 android:layout_marginTop="5dp"
                  android:id="@+id/visit_growthwell"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
@@ -98,16 +129,10 @@
                  android:padding="7dp"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
-                 android:text="Rafique Mohammed (Android)"
+                 android:text="Contact us at info@growthwell.com"
                  android:textSize="15sp"
                  />
-             <TextView
-                 android:padding="7dp"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:text="Ronak Rathod (Web API)"
-                 android:textSize="15sp"
-                 />
+
 
              <Button
                  android:layout_marginTop="8dp"
@@ -117,7 +142,7 @@
                  android:background="@drawable/btn_dark"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
-                 android:text="Got Error?? Report Us!"
+                 android:text="Feedback / Bug Report"
                  android:id="@+id/report_bug" />
 
          </LinearLayout>

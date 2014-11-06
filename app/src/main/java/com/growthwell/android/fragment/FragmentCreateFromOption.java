@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.growthwell.android.QRLayouts.ContactAddress;
 import com.growthwell.android.QRLayouts.PlainText;
 import com.growthwell.android.QRLayouts.SMSLayout;
+import com.growthwell.android.QRLayouts.WIFIConfigureFragment;
 import com.growthwell.android.QRLayouts.WebAddress;
 import com.growthwell.android.util.Global;
 import com.growthwell.android.viewitquick.R;
@@ -34,8 +35,8 @@ public class FragmentCreateFromOption extends Fragment implements AdapterView.On
 
     ListView list;
     ArrayList<OptionStructure> list_data;
-    int[] list_icon = {R.drawable.ic_document,R.drawable.ic_vcard,R.drawable.ic_contact_sharing,R.drawable.ic_chat,R.drawable.ic_globe,R.drawable.ic_location};
-    String[] list_titles = {"Plain Text","Business Card","Contact Sharing","SMS","Web URL","Zippr"};
+    int[] list_icon = {R.drawable.ic_document,R.drawable.ic_vcard,R.drawable.ic_contact_sharing,R.drawable.ic_chat,R.drawable.ic_globe,R.drawable.ic_location,R.drawable.ic_wifi_conf};
+    String[] list_titles = {"Plain Text","Business Card","Contact Sharing","SMS","Web URL","Zippr","Quick WiFi Configuration"};
     public FragmentCreateFromOption() {
         // Required empty public constructor
     }
@@ -52,7 +53,7 @@ public class FragmentCreateFromOption extends Fragment implements AdapterView.On
         list_data.add(new OptionStructure(2,list_titles[2],list_icon[2]));
         list_data.add(new OptionStructure(3,list_titles[3],list_icon[3]));
         list_data.add(new OptionStructure(4,list_titles[4],list_icon[4]));
-        list_data.add(new OptionStructure(5,list_titles[5],list_icon[5]));
+        list_data.add(new OptionStructure(6,list_titles[6],list_icon[6]));
 
 
         list = (ListView) v.findViewById(R.id.listview);
@@ -84,7 +85,10 @@ OptionStructure opt= (OptionStructure) adapterView.getItemAtPosition(i);
                 Global.swapFragment(getActivity(),new WebAddress(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_PLAIN);
                 break;
             case 5:
-                Global.swapFragment(getActivity(),new PlainText(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_PLAIN);
+                Global.swapFragment(getActivity(),new WIFIConfigureFragment(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_PLAIN);
+                break;
+            case 6:
+                Global.swapFragment(getActivity(),new WIFIConfigureFragment(),new Bundle(),Global.FRAGMENT_TAG_CREATE_QR_PLAIN);
                 break;
 
         }

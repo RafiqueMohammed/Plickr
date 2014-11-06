@@ -5,26 +5,92 @@
     tools:context="com.growthwell.android.QRLayouts.SMSLayout"
     android:orientation="vertical"
     android:background="#333"
+    android:padding="5dp"
     >
-    <EditText
-        android:textColor="@color/green"
-        android:id="@+id/in_phone"
-        android:hint="Send to.."
-        android:padding="4dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:lineSpacingExtra="3dp"
-        android:layout_weight="1"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chat"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="SMS"
+            style="@style/header_green"
+            android:layout_marginBottom="15dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To :"
+            android:textColor="#eee"
+            android:textSize="18sp"/>
+        <EditText
+            android:textColor="@color/green"
+            android:id="@+id/in_phone"
+            android:hint="enter phone number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:layout_weight="1"
+            />
+        <ImageButton
+            android:id="@+id/btn_pick_contact"
+            android:layout_marginTop="-5dp"
+            android:background="#333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_contact_sharing"/>
+
+        </LinearLayout>
+
 <EditText
     android:textColor="@color/green"
     android:id="@+id/in_msg"
-    android:hint="Your short SMS.."
+    android:hint="Enter Your Message.."
     android:gravity="top|start"
     android:padding="4dp"
+    android:maxLength="162"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
+    android:layout_height="wrap_content"
+    android:minHeight="250dp"
     android:lineSpacingExtra="3dp"
-    android:layout_weight="10"/>
+  />
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#999"
+            android:text="! Recommended lenght is 162 Chars."/>
+        <TextView
+            android:id="@+id/recommend_why"
+            android:textColor="#99bb00"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Why?"
+            android:clickable="true"/>
+        </LinearLayout>
+
 
     <Button
         android:background="@drawable/btn_green"

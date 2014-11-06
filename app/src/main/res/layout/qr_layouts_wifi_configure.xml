@@ -1,0 +1,169 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.growthwell.android.QRLayouts.ContactAddress"
+   android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2c2c2c"
+    >
+<LinearLayout
+    android:padding="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_wifi_conf"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="WIFI CONFIGURATION"
+                style="@style/header_green"
+                android:layout_marginBottom="15dp"
+                />
+            </LinearLayout>
+
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="SSID"
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+        <EditText
+            android:id="@+id/in_ssid"
+            style="@style/font_green"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:inputType="text"
+            android:hint="WiFi Network Name"
+            android:background="@drawable/edittext_dark_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="8dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Password"
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+        <EditText
+            android:id="@+id/in_pass"
+            style="@style/font_green"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:hint="Leave blank if No Password"
+            android:background="@drawable/edittext_dark_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Encryption Type "
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+        <TextView
+            android:padding="5dp"
+            android:textColor="#aaa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(Leave default if you dont know )"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group_encryption"
+        android:checkedButton="@+id/radio_wep"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/radio_wep"
+                style="@style/font_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WEP"
+                android:enabled="true"/>
+            <RadioButton
+                android:id="@+id/radio_wpa"
+                style="@style/font_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WPA / WPA2" />
+            <RadioButton
+                android:id="@+id/radio_no_enc"
+                style="@style/font_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="None" />
+            </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Hidden Mode"
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+      <RadioGroup
+          android:id="@+id/radio_group_hidden"
+
+          android:checkedButton="@+id/radio_yes"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+          <RadioButton
+              android:padding="10dp"
+              style="@style/font_green"
+              android:id="@+id/radio_yes"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Yes"/>
+          <RadioButton
+              android:padding="10dp"
+              style="@style/font_green"
+              android:id="@+id/radio_no"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="No"/>
+          </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_create_qr"
+        android:layout_marginTop="10dp"
+        android:text="Generate QR"
+        android:textColor="#333"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_green"/>
+</LinearLayout>
+
+
+</ScrollView>

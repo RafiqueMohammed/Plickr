@@ -31,9 +31,14 @@ public class Global {
     public static final String FRAGMENT_TAG_SCAN="FRAG_SCAN";
     public static final String FRAGMENT_TAG_LOGIN="FRAG_LOGIN";
     public static final String FRAGMENT_TAG_CREATE="FRAG_CREATE";
+    public static final String FRAGMENT_TAG_FEEDBACK="FRAG_FEEDBACK";
     public static final String FRAGMENT_TAG_CREATE_QR_PLAIN="FRAG_CREATE_QR_PLAIN";
+    public static final String FRAGMENT_TAG_CREATE_QR_WIFI="FRAG_CREATE_QR_WIFI";
     public static final String FRAGMENT_TAG_CREATE_QR_SMS="FRAG_CREATE_QR_SMS";
     public static final String FRAGMENT_TAG_CREATE_QR_CONTACT="FRAG_CREATE_QR_CONTACT";
+
+    public static final String LINK_URL_SHORTNER="http://plickr.in/api/URLShortner";
+    public static final String LINK_FEEDBACK="http://plickr.in/api/Feedback";
 
     public static final String FRAGMENT_TAG_CREATE_QR_URL="FRAG_CREATE_QR_URL";
 
@@ -42,12 +47,12 @@ public class Global {
 
     public static final class QR_CREATE_TYPE{
 
-       public static final int PLAIN=1350,URL=1351,CONTACT=1352,SMS=1353,VCARD=1354,MECARD=1355;
+       public static final int PLAIN=1350,URL=1351,CONTACT=1352,SMS=1353,VCARD=1354,MECARD=1355,WIFI=1356;
     }
 
     public static final class QR_SCAN_TYPE{
 
-        public static final int PLAIN=1450,URL=1451,CONTACT=1452,SMS=1453,VCARD=1454,MECARD=1455;
+        public static final int PLAIN=1450,URL=1451,CONTACT=1452,SMS=1453,VCARD=1454,MECARD=1455,WIFI=1456;
     }
 
 
@@ -104,6 +109,11 @@ Global.start((Activity)c);
         frag.setArguments(data);
         fM.beginTransaction().replace(R.id.frame_container,frag,tag).addToBackStack(null).commit();
     }
+    public static void swapFragment(Context c,Fragment frag,String tag){
+        Activity a=(Activity)c;
+        FragmentManager fM=a.getFragmentManager();
+        fM.beginTransaction().replace(R.id.frame_container,frag,tag).addToBackStack(null).commit();
+    }
 
     public static void alert(Context c,String msg,Boolean isWarning){
 
@@ -111,11 +121,40 @@ Global.start((Activity)c);
         String title;
 
         if(isWarning){
-            icon=android.R.drawable.stat_sys_warning;
+            icon=R.drawable.ic_grey_warning;
             title="Alert";
         }else{
-            icon=android.R.drawable.stat_sys_download_done;
+            icon=R.drawable.ic_laugh_face;
             title="Success";
+        }
+
+        AlertDialog alertDialog = new AlertDialog.Builder(c).create();
+
+        alertDialog.setTitle(title);
+
+        alertDialog.setMessage(msg);
+
+        alertDialog.setIcon(icon);
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.show();
+
+    }    public static void alert(Context c,String title,String msg,Boolean isWarning){
+
+        int icon;
+
+
+        if(isWarning){
+            icon=R.drawable.ic_grey_warning;
+
+        }else{
+            icon=R.drawable.ic_laugh_face;
+
         }
 
         AlertDialog alertDialog = new AlertDialog.Builder(c).create();
@@ -157,6 +196,7 @@ Global.start((Activity)c);
             d.setCancelable(false);
             d.setCanceledOnTouchOutside(false);
             d.setMessage(msg);
+            d.setIcon(R.drawable.ic_question_green);
             d.setButton(AlertDialog.BUTTON_NEGATIVE,neg,new DialogInterface.OnClickListener(){
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {

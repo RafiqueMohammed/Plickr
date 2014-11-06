@@ -6,24 +6,29 @@
     tools:context="com.growthwell.android.fragment.GeneratedQRFragment">
 
 <LinearLayout
-    android:background="@color/orange"
+    android:background="@color/green"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="end">
     <ImageButton
+        android:id="@+id/btn_save_qr"
+        android:padding="8dp"
+        android:background="#99bb00"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_menu_save"
         />
     <ImageButton
+        android:padding="8dp"
+        android:background="#99bb00"
+        android:id="@+id/share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_menu_share"/>
     </LinearLayout>
 <ImageView
     android:id="@+id/GeneratedQR"
-    android:src="@drawable/plickr"
     android:layout_gravity="center_vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />

@@ -6,7 +6,22 @@
     android:orientation="vertical"
     android:background="#333"
     >
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_document"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PLAIN TEXT"
+            style="@style/header_green"
+            android:layout_marginBottom="15dp"
+            />
+    </LinearLayout>
 <EditText
     android:textColor="@color/green"
     android:id="@+id/qr_input_plain_text"
@@ -14,16 +29,34 @@
     android:gravity="top|start"
     android:padding="4dp"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:lineSpacingExtra="3dp"
-    android:layout_weight="8"/>
+    android:layout_height="200dp"
+    android:lineSpacingExtra="3dp"/>
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#999"
+            android:text="! Recommended lenght is 162 Chars."/>
+        <TextView
+            android:id="@+id/recommend_why"
+            android:textColor="#99bb00"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Why?"
+            android:clickable="true"/>
+    </LinearLayout>
     <Button
         android:background="@drawable/btn_green"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:text="Create QR"
-        android:layout_weight="1"
         android:id="@+id/btn_create_qr" />
 
 </LinearLayout>

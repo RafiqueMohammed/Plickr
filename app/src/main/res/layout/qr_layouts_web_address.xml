@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.growthwell.android.QRLayouts.WebAddress"
-    android:background="#ddd"
+    android:background="#2c2c2c"
     android:padding="10dp">
 
 
@@ -14,14 +14,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_globe"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="WEB URL"
+            style="@style/header_green"
+            android:layout_marginBottom="15dp"
+            />
+    </LinearLayout>
 <LinearLayout
     android:layout_marginBottom="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 <LinearLayout
-    android:background="#fff"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -31,11 +46,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Enter the URL"
+        android:text="@string/f_qr_web_url"
         android:padding="10dp"
+        style="@style/font_green"
         android:id="@+id/textView" />
 
     <EditText
+        android:background="@drawable/edittext_dark_bg"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,25 +63,44 @@
 
 
     <LinearLayout
-        android:background="#fff"
+        android:id="@+id/shorturl_container"
+        android:visibility="visible"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="vertical">
-        <TextView
-            android:padding="10dp"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Short URL"
-            android:id="@+id/textView2" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:padding="10dp"
+                style="@style/font_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/f_qr_web_shorturl"
+                android:id="@+id/textView2" />
+
+            <ImageView
+                android:padding="3dp"
+                android:id="@+id/remove_short_url_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"/>
+
+
+        </LinearLayout>
 
         <TextView
             android:padding="10dp"
+            android:background="@drawable/edittext_dark_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="http://plickr.in/6fD5g"
-            android:id="@+id/textView3" />
+            android:id="@+id/short_url_txt" />
     </LinearLayout>
     </LinearLayout>
 
@@ -76,7 +112,7 @@
         android:background="@drawable/btn_green"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generate QR"
+        android:text="@string/f_qr_web_generatebtn"
         android:textColor="#222"
         android:layout_weight="1"
         android:id="@+id/btn_create_qr" />
@@ -84,10 +120,10 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Shorten URL"
+        android:text="@string/f_qr_web_shortbtn"
         android:layout_weight="1"
         android:textColor="#eee"
-        android:id="@+id/button2"
+        android:id="@+id/generate_short_url"
         android:background="@drawable/btn_dark"
         android:layout_gravity="center_horizontal" />
     </LinearLayout>
@@ -97,24 +133,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/img_qr_view" />
-
-    <LinearLayout
-        android:gravity="end"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ImageButton
-            android:src="@android:drawable/ic_menu_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Share"/>
-
-        <ImageButton
-            android:src="@android:drawable/ic_menu_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-           />
-        </LinearLayout>
 
 </LinearLayout>
 </ScrollView>

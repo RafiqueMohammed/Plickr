@@ -10,13 +10,9 @@ import android.hardware.Camera.Size;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
-import com.growthwell.android.viewitquick.CameraPreview;
+import com.growthwell.android.util.CameraSurfaceHolder;
 import com.growthwell.android.viewitquick.R;
 
 import net.sourceforge.zbar.Config;
@@ -30,7 +26,7 @@ import net.sourceforge.zbar.SymbolSet;
 public class CameraTestActivity extends Activity
 {
     private Camera mCamera;
-    private CameraPreview mPreview;
+    private CameraSurfaceHolder mPreview;
     private Handler autoFocusHandler;
 
 
@@ -58,7 +54,7 @@ public class CameraTestActivity extends Activity
         scanner.setConfig(0, Config.X_DENSITY, 3);
         scanner.setConfig(0, Config.Y_DENSITY, 3);
 
-        mPreview = new CameraPreview(this, mCamera, previewCb, autoFocusCB);
+        mPreview = new CameraSurfaceHolder(this, mCamera, previewCb, autoFocusCB);
         FrameLayout preview = (FrameLayout)findViewById(R.id.cameraPreview);
         preview.addView(mPreview);
 

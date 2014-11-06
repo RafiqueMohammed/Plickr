@@ -61,7 +61,7 @@
              <Button
                 android:layout_weight="1"
                  android:id="@+id/btn_register_account"
-                 android:text="Register"
+                 android:text="@string/f_login_register"
                  android:textColor="#444"
                  android:background="@drawable/btn_white_green"
                  android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
              <Button
                  android:layout_weight="1"
                  android:id="@+id/btn_login"
-                 android:text="Log in"
+                 android:text="@string/f_login_login"
                  android:textColor="#444"
                  android:background="@drawable/btn_white_green"
                  android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
              android:layout_gravity="center"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="Enter OTP Code"
+             android:text="@string/f_login_otp"
              android:textColor="#eee"/>
          <EditText
              android:layout_width="match_parent"
@@ -115,7 +115,7 @@
              android:id="@+id/btn_email_verify"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="Verify"
+             android:text="@string/f_login_verify"
              android:layout_marginTop="10dp"
              android:background="@drawable/btn_white_green"/>
      </LinearLayout>

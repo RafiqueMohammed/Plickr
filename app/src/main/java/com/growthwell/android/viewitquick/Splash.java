@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.growthwell.android.trash.MainActivity;
-
 public class Splash extends Activity {
 
     private static final boolean AUTO_HIDE = true;

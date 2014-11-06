@@ -3,8 +3,10 @@ package com.growthwell.android.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.google.zxing.BarcodeFormat;
@@ -23,6 +26,12 @@ import com.growthwell.android.util.Global;
 import com.growthwell.android.util.QREncoder;
 import com.growthwell.android.viewitquick.R;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+
 /**
  * A simple {@link Fragment} subclass.
  *
@@ -30,6 +39,7 @@ import com.growthwell.android.viewitquick.R;
 public class GeneratedQRFragment extends Fragment {
 
 ImageView image_view;
+    ImageButton share;
     public GeneratedQRFragment() {
         // Required empty public constructor
     }
@@ -41,6 +51,7 @@ ImageView image_view;
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_create_qr, container, false);
         image_view= (ImageView) v.findViewById(R.id.GeneratedQR);
+        image_view.setDrawingCacheEnabled(true);
         if(getArguments().isEmpty()){
             String[] contact={"This is plain text",
                     "WIFI:S:NEWAGE;T:WEP;P:0123456789;",
@@ -65,6 +76,30 @@ ImageView image_view;
             }
         }
 
+        share= (ImageButton) v.findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+Bitmap b=image_view.getDrawingCache();
+                String filename="qr.jpg";
+                try
+                {
+                    FileOutputStream ostream = getActivity().openFileOutput(filename, Context.MODE_WORLD_READABLE);
+                    b.compress(Bitmap.CompressFormat.JPEG, 100, ostream);
+                    ostream.close();
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+                sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File( getActivity().getFileStreamPath( filename).getAbsolutePath())));
+                sharingIntent.setType("image/*");
+               // sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml("<p>This is the text that will be shared.</p>"));
+                startActivity(Intent.createChooser(sharingIntent,"Share using"));
+            }
+        });
 
 
         return v;

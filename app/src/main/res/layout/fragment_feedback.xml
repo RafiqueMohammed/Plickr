@@ -1,0 +1,178 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.growthwell.android.fragment.FeedbackFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+    android:background="#222"
+        >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/screen_1">
+    <LinearLayout
+        android:clickable="true"
+        android:id="@+id/click_feedback_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+        <ImageView
+            android:src="@drawable/img_write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:textSize="22sp"
+            android:padding="8dp"
+            style="@style/font_green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Feedback"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:clickable="true"
+        android:id="@+id/click_bug_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+        <ImageView
+            android:src="@drawable/img_bug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:textSize="22sp"
+            android:padding="8dp"
+            style="@style/font_green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Report Bug"/>
+    </LinearLayout>
+    </LinearLayout>
+        <ScrollView
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#444"
+            android:id="@+id/screen_2"
+            >
+    <!-- FORM LAYOUT -->
+<LinearLayout
+
+    android:padding="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/f_feedback_title"
+            style="@style/header_green"
+            android:layout_marginBottom="15dp"
+            />
+        <TextView
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#ccc"
+            android:text="@string/f_feedback_text_desc"/>
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/f_feedback_fullname"
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+        <EditText
+            android:id="@+id/in_fname"
+            style="@style/font_green"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:hint="Your Fullname"
+            android:background="@drawable/edittext_dark_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/f_feedback_email"
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+        <EditText
+            android:id="@+id/in_email"
+            style="@style/font_green"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:hint="Your Email ID"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/edittext_dark_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/f_feedback_website"
+            android:layout_margin="5dp"
+            style="@style/font_green"/>
+        <EditText
+            android:id="@+id/in_msg"
+            android:hint="Your Message.."
+            android:gravity="top|left"
+            style="@style/font_green"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:minHeight="150dp"
+            android:background="@drawable/edittext_dark_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_send_feedback"
+        android:layout_marginTop="10dp"
+        android:text="@string/f_feedback_send"
+        android:textColor="#333"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_green"/>
+</LinearLayout>
+        </ScrollView>
+</LinearLayout>
