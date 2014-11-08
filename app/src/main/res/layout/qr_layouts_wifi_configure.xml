@@ -3,7 +3,7 @@
     tools:context="com.growthwell.android.QRLayouts.ContactAddress"
    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2c2c2c"
+   style="@style/page_background"
     >
 <LinearLayout
     android:padding="8dp"

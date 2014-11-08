@@ -3,21 +3,22 @@ package com.growthwell.android.util;
 /**
  * Created by Rafique on 16/10/2014.
  */
-import android.provider.ContactsContract;
+
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
-
-import java.util.Collection;
-import java.util.EnumMap;
-import java.util.HashSet;
-import java.util.Map;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+
+import java.util.Collection;
+import java.util.EnumMap;
+import java.util.HashSet;
+import java.util.Map;
 
 public final class QREncoder {
     private static final int WHITE = 0xFFFFFFFF;
@@ -33,6 +34,40 @@ public final class QREncoder {
     public QREncoder(String data, Bundle bundle, String type, String format, int dimension) {
         this.dimension = dimension;
         encoded = encodeContents(data, bundle, type, format);
+    }
+
+    private static String guessAppropriateEncoding(CharSequence contents) {
+        // Very crude at the moment
+        for (int i = 0; i < contents.length(); i++) {
+            if (contents.charAt(i) > 0xFF) {
+                return "UTF-8";
+            }
+        }
+        return null;
+    }
+
+    private static String trim(String s) {
+        if (s == null) {
+            return null;
+        }
+        String result = s.trim();
+        return result.length() == 0 ? null : result;
+    }
+
+    private static String escapeMECARD(String input) {
+        if (input == null || (input.indexOf(':') < 0 && input.indexOf(';') < 0)) {
+            return input;
+        }
+        int length = input.length();
+        StringBuilder result = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            char c = input.charAt(i);
+            if (c == ':' || c == ';') {
+                result.append('\\');
+            }
+            result.append(c);
+        }
+        return result.toString();
     }
 
     public String getContents() {
@@ -203,33 +238,5 @@ public final class QREncoder {
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
         return bitmap;
-    }
-
-    private static String guessAppropriateEncoding(CharSequence contents) {
-        // Very crude at the moment
-        for (int i = 0; i < contents.length(); i++) {
-            if (contents.charAt(i) > 0xFF) { return "UTF-8"; }
-        }
-        return null;
-    }
-
-    private static String trim(String s) {
-        if (s == null) { return null; }
-        String result = s.trim();
-        return result.length() == 0 ? null : result;
-    }
-
-    private static String escapeMECARD(String input) {
-        if (input == null || (input.indexOf(':') < 0 && input.indexOf(';') < 0)) { return input; }
-        int length = input.length();
-        StringBuilder result = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
-            char c = input.charAt(i);
-            if (c == ':' || c == ';') {
-                result.append('\\');
-            }
-            result.append(c);
-        }
-        return result.toString();
     }
 }

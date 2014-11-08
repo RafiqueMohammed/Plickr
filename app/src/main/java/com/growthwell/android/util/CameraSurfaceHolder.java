@@ -5,9 +5,8 @@
  */
 package com.growthwell.android.util;
 
-import android.content.pm.PackageManager;
-import android.hardware.Camera;
 import android.content.Context;
+import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.PreviewCallback;
 import android.util.Log;
@@ -16,7 +15,9 @@ import android.view.SurfaceView;
 
 import java.io.IOException;
 
-/** A basic Camera preview class */
+/**
+ * A basic Camera preview class
+ */
 public class CameraSurfaceHolder extends SurfaceView implements SurfaceHolder.Callback {
     private SurfaceHolder mHolder;
     private Camera mCamera;
@@ -57,13 +58,13 @@ public class CameraSurfaceHolder extends SurfaceView implements SurfaceHolder.Ca
     }
 
 
-
     public void surfaceCreated(SurfaceHolder holder) {
         // The Surface has been created, now tell the camera where to draw the preview.
         try {
-            if(mCamera!=null) {
+            if (mCamera != null) {
                 mCamera.setPreviewDisplay(holder);
-            }        } catch (IOException e) {
+            }
+        } catch (IOException e) {
             Log.d("DBG", "Error setting camera preview: " + e.getMessage());
         }
     }
@@ -77,16 +78,16 @@ public class CameraSurfaceHolder extends SurfaceView implements SurfaceHolder.Ca
          * If your preview can change or rotate, take care of those events here.
          * Make sure to stop the preview before resizing or reformatting it.
          */
-        if (mHolder.getSurface() == null){
-          // preview surface does not exist
-          return;
+        if (mHolder.getSurface() == null) {
+            // preview surface does not exist
+            return;
         }
 
         // stop preview before making changes
         try {
             mCamera.stopPreview();
-        } catch (Exception e){
-          // ignore: tried to stop a non-existent preview
+        } catch (Exception e) {
+            // ignore: tried to stop a non-existent preview
         }
 
         try {
@@ -97,7 +98,7 @@ public class CameraSurfaceHolder extends SurfaceView implements SurfaceHolder.Ca
             mCamera.setPreviewCallback(previewCallback);
             mCamera.startPreview();
             mCamera.autoFocus(autoFocusCallback);
-        } catch (Exception e){
+        } catch (Exception e) {
             Log.d("DBG", "Error starting camera preview: " + e.getMessage());
         }
     }

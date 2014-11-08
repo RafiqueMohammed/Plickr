@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.growthwell.android.QRLayouts.PlainText"
     android:orientation="vertical"
-    android:background="#333"
+    style="@style/page_background"
     >
     <LinearLayout
         android:layout_width="match_parent"

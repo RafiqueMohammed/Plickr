@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.growthwell.android.QRLayouts.SMSLayout"
     android:orientation="vertical"
-    android:background="#333"
+    style="@style/page_background"
     android:padding="5dp"
     >
     <LinearLayout

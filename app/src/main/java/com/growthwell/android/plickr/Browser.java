@@ -1,4 +1,4 @@
-package com.growthwell.android.viewitquick;
+package com.growthwell.android.plickr;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,21 +17,20 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.growthwell.android.fragment.AboutFragment;
-
 
 public class Browser extends Activity {
 
     WebView browser;
-    String url="";
-    int progress_count=0;
+    String url = "";
+    int progress_count = 0;
     ProgressBar mLoadingProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_PROGRESS);
-       // requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        // requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setProgressBarIndeterminate(true);
 
         setContentView(R.layout.activity_browser);
@@ -61,52 +60,53 @@ public class Browser extends Activity {
         });
 
 
-        browser= (WebView) findViewById(R.id.browser_view);
+        browser = (WebView) findViewById(R.id.browser_view);
         browser.getSettings().setJavaScriptEnabled(true);
         browser.getSettings().setSupportZoom(true);
 
         //browser.getSettings().setBuiltInZoomControls(true);
         browser.setWebViewClient(new BrowserWebClient());
         browser.setWebChromeClient(new BrowserClient());
-        Intent extra=getIntent();
-        if(extra!=null){
-            url=extra.getStringExtra("url");
+        Intent extra = getIntent();
+        if (extra != null) {
+            url = extra.getStringExtra("url");
         }
-if(url!=""){
+        if (url != "") {
 
-    browser.loadUrl(url);
-}else{
-    Toast.makeText(this,"No url found",Toast.LENGTH_LONG).show();
-}
+            browser.loadUrl(url);
+        } else {
+            Toast.makeText(this, "No url found", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater m=getMenuInflater();
-        m.inflate(R.menu.browser,menu);
+        MenuInflater m = getMenuInflater();
+        m.inflate(R.menu.browser, menu);
 
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.scan_again:
-                startActivity(new Intent(Browser.this,MainActivity.class));
+                startActivity(new Intent(Browser.this, ScanCameraActivity.class));
 
                 return true;
 
-            default: return true;
+            default:
+                return true;
         }
 
     }
 
-    class BrowserWebClient extends WebViewClient{
+    class BrowserWebClient extends WebViewClient {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            Toast.makeText(Browser.this,url,Toast.LENGTH_LONG).show();
+            Toast.makeText(Browser.this, url, Toast.LENGTH_LONG).show();
             return super.shouldOverrideUrlLoading(view, url);
 
         }
@@ -129,11 +129,11 @@ if(url!=""){
         @Override
         public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
             super.onReceivedError(view, errorCode, description, failingUrl);
-            Toast.makeText(Browser.this,"Error "+errorCode+" : "+failingUrl+" \n Description :"+description,Toast.LENGTH_LONG).show();
+            Toast.makeText(Browser.this, "Error " + errorCode + " : " + failingUrl + " \n Description :" + description, Toast.LENGTH_LONG).show();
         }
     }
 
-    class BrowserClient extends WebChromeClient{
+    class BrowserClient extends WebChromeClient {
 
 
         @Override

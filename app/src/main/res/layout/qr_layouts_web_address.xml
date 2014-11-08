@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.growthwell.android.QRLayouts.WebAddress"
-    android:background="#2c2c2c"
+    style="@style/page_background"
     android:padding="10dp">
 
 
@@ -54,6 +54,7 @@
     <EditText
         android:background="@drawable/edittext_dark_bg"
         android:padding="10dp"
+        style="@style/font_green"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/url_txt"
@@ -64,7 +65,7 @@
 
     <LinearLayout
         android:id="@+id/shorturl_container"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="vertical">
@@ -96,6 +97,7 @@
 
         <TextView
             android:padding="10dp"
+            style="@style/font_green"
             android:background="@drawable/edittext_dark_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -122,7 +124,7 @@
         android:layout_height="wrap_content"
         android:text="@string/f_qr_web_shortbtn"
         android:layout_weight="1"
-        android:textColor="#eee"
+        style="@style/font_green"
         android:id="@+id/generate_short_url"
         android:background="@drawable/btn_dark"
         android:layout_gravity="center_horizontal" />

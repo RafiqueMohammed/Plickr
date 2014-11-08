@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.growthwell.android.viewitquick.R;
+import com.growthwell.android.plickr.R;
 
-public class DashboardFragment extends Fragment  {
+public class DashboardFragment extends Fragment {
 
     public DashboardFragment() {
     }
@@ -17,7 +17,7 @@ public class DashboardFragment extends Fragment  {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-View v=inflater.inflate(R.layout.fragment_dashboard,container,false);
+        View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         return v;
 

@@ -15,21 +15,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.google.zxing.Result;
-import com.google.zxing.client.result.VCardResultParser;
 import com.growthwell.android.util.Global;
 import com.growthwell.android.util.L;
-import com.growthwell.android.viewitquick.Browser;
-import com.growthwell.android.viewitquick.MainActivity;
-import com.growthwell.android.viewitquick.R;
+import com.growthwell.android.plickr.Browser;
+import com.growthwell.android.plickr.R;
+import com.growthwell.android.plickr.ScanCameraActivity;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
-import ezvcard.Ezvcard;
-import ezvcard.VCard;
-
-public class ScanFragment extends Fragment implements Global.showDialog.DialogListener{
+public class ScanFragment extends Fragment implements Global.showDialog.DialogListener {
 
     ImageButton btn;
 
@@ -54,7 +49,7 @@ public class ScanFragment extends Fragment implements Global.showDialog.DialogLi
     public void startScanning() {
 
 
-        Intent i = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+        Intent i = new Intent(getActivity().getApplicationContext(), ScanCameraActivity.class);
         startActivityForResult(i, Global.REQUEST_SCAN_RESULT);
     }
 
@@ -82,48 +77,49 @@ public class ScanFragment extends Fragment implements Global.showDialog.DialogLi
                     getActivity().startActivity(i);
                 } else if (mecard_pattern.matcher(result).find()) {
                     L.c("MECARD MATCHED");
-                    Bundle b=new Bundle();
-                    b.putString("title","Contact Address Found");
-                    b.putString("msg","Do you want to view this contact?");
-                    b.putString("positive","Ok, Do it!");
-                    b.putString("negative","No, Leave it!");
+                    Bundle b = new Bundle();
+                    b.putString("title", "Contact Address Found");
+                    b.putString("msg", "Do you want to view this contact?");
+                    b.putString("positive", "Ok, Do it!");
+                    b.putString("negative", "No, Leave it!");
                     b.putInt("TYPE", Global.QR_SCAN_TYPE.MECARD);
-                    b.putString("DATA",result);
-                    d=new Global.showDialog(getActivity(),this,b);
+                    b.putString("DATA", result);
+                    d = new Global.showDialog(getActivity(), this, b);
                     d.show();
-                }else if(vcard_pattern.matcher(result).find()){
+                } else if (vcard_pattern.matcher(result).find()) {
                     L.c("VCARD MATCHED");
-                 //   VCard v= Ezvcard.parse(result).first();
+                    //   VCard v= Ezvcard.parse(result).first();
 //                    L.c("VCAR NAME "+v.getFormattedNames().get(0).getValue());
-                    ScanInfoFragment s = new ScanInfoFragment();
+                   /* ScanInfoFragment s = new ScanInfoFragment();
                     s.setArguments(data.getExtras());
                     getActivity().getFragmentManager()
-                            .beginTransaction().replace(R.id.frame_container, s, Global.FRAGMENT_TAG_SCAN).commit();
+                            .beginTransaction().replace(R.id.frame_container, s, Global.FRAGMENT_TAG_SCAN).commit();*/
+                    Global.alert(getActivity(),"VCARD not supported yet","We are working on it. We will update it soon..", true);
 
 
-                }else if(sms_pattern.matcher(result).find()){
+                } else if (sms_pattern.matcher(result).find()) {
                     L.c("SMS MATCHED");
-                    Bundle b=new Bundle();
-                    b.putString("title","SMS Detected");
-                    b.putString("msg","Do you want to open it in SMS window?");
-                    b.putString("positive","Ok, Do it!");
-                    b.putString("negative","No, Leave it!");
+                    Bundle b = new Bundle();
+                    b.putString("title", "SMS Detected");
+                    b.putString("msg", "Do you want to open it in SMS window?");
+                    b.putString("positive", "Ok, Do it!");
+                    b.putString("negative", "No, Leave it!");
                     b.putInt("TYPE", Global.QR_SCAN_TYPE.SMS);
-                    b.putString("DATA",result);
-                    d=new Global.showDialog(getActivity(),this,b);
-               d.show();
+                    b.putString("DATA", result);
+                    d = new Global.showDialog(getActivity(), this, b);
+                    d.show();
 
-                }else if(result.startsWith("WIFI:")) {
+                } else if (result.startsWith("WIFI:")) {
 
-                    Bundle b=new Bundle();
-                    b.putString("title","WIFI Configuration");
-                    b.putString("msg","Do you want to save this wifi configuration?");
-                    b.putString("positive","Yes! Save it!");
-                    b.putString("negative","No! Leave it!");
+                    Bundle b = new Bundle();
+                    b.putString("title", "WIFI Configuration");
+                    b.putString("msg", "Do you want to save this wifi configuration?");
+                    b.putString("positive", "Yes! Save it!");
+                    b.putString("negative", "No! Leave it!");
                     b.putInt("TYPE", Global.QR_SCAN_TYPE.WIFI);
-                    b.putString("DATA",result);
+                    b.putString("DATA", result);
 
-                    d=new Global.showDialog(getActivity(),this,b);
+                    d = new Global.showDialog(getActivity(), this, b);
                     d.show();
 
               /*  wc.SSID = "\"YOUR_SSID\"";
@@ -140,11 +136,11 @@ public class ScanFragment extends Fragment implements Global.showDialog.DialogLi
                 wifiManager.enableNetwork(netId, true);
                 wifiManager.setWifiEnabled(true);*/
 
-                }else if(result.startsWith("tel:")){
+                } else if (result.startsWith("tel:")) {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse(result));
                     startActivity(intent);
-                }else {
+                } else {
                     L.c("PLAIN TEXT");
                     ScanInfoFragment s = new ScanInfoFragment();
                     s.setArguments(data.getExtras());
@@ -158,133 +154,132 @@ public class ScanFragment extends Fragment implements Global.showDialog.DialogLi
     }
 
     @Override
-    public void response(boolean res,Bundle data) {
-String raw_data=data.getString("DATA");
+    public void response(boolean res, Bundle data) {
+        String raw_data = data.getString("DATA");
         String[] split_data;
-switch(data.getInt("TYPE")){
-    case Global.QR_SCAN_TYPE.SMS:
-        split_data=raw_data.split(":",3);
-        String number=split_data[1];
-        String msg="";
-        if(split_data.length>2){
-            msg=split_data[2];
-        }
+        switch (data.getInt("TYPE")) {
+            case Global.QR_SCAN_TYPE.SMS:
+                split_data = raw_data.split(":", 3);
+                String number = split_data[1];
+                String msg = "";
+                if (split_data.length > 2) {
+                    msg = split_data[2];
+                }
 
 
-        Intent smsIntent;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) //At least KitKat
-        {
-            String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(getActivity()); //Need to change the build to API 19
+                Intent smsIntent;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) //At least KitKat
+                {
+                    String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(getActivity()); //Need to change the build to API 19
 
-            smsIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + Uri.encode(number)));
-            //smsIntent.putExtra(Intent.EXTRA_TEXT, msg);
-            smsIntent.putExtra("sms_body", msg);
+                    smsIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + Uri.encode(number)));
+                    //smsIntent.putExtra(Intent.EXTRA_TEXT, msg);
+                    smsIntent.putExtra("sms_body", msg);
 
-            if (defaultSmsPackageName != null)//Can be null in case that there is no default, then the user would be able to choose any app that support this intent.
-            {
-                smsIntent.setPackage(defaultSmsPackageName);
-            }
+                    if (defaultSmsPackageName != null)//Can be null in case that there is no default, then the user would be able to choose any app that support this intent.
+                    {
+                        smsIntent.setPackage(defaultSmsPackageName);
+                    }
 
 
-        }
-        else //For early versions, do what worked for you before.
-        {
+                } else //For early versions, do what worked for you before.
+                {
             /*Intent sendIntent = new Intent(Intent.ACTION_VIEW);
             sendIntent.setData(Uri.parse("sms:"));
             sendIntent.putExtra("sms_body", msg);
             getActivity().startActivity(sendIntent);*/
-            smsIntent = new Intent(Intent.ACTION_VIEW);
-            smsIntent.setType("vnd.android-dir/mms-sms");
-            smsIntent.putExtra("address", number);
-            smsIntent.putExtra("sms_body",msg);
+                    smsIntent = new Intent(Intent.ACTION_VIEW);
+                    smsIntent.setType("vnd.android-dir/mms-sms");
+                    smsIntent.putExtra("address", number);
+                    smsIntent.putExtra("sms_body", msg);
 
 
-        }
-        getActivity().startActivity(smsIntent);
+                }
+                getActivity().startActivity(smsIntent);
 
-        break;
+                break;
 
-    case Global.QR_SCAN_TYPE.MECARD:
-        Intent intent = new Intent(Intent.ACTION_INSERT);
-        intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
+            case Global.QR_SCAN_TYPE.MECARD:
+                Intent intent = new Intent(Intent.ACTION_INSERT);
+                intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
 
-        raw_data=raw_data.replace("MECARD:","");
-        split_data=raw_data.split(";");
-        for(String sp:split_data){
-            if(sp.startsWith("N:")){
-                intent.putExtra(ContactsContract.Intents.Insert.NAME, sp.replace("N:",""));
-            }else if(sp.startsWith("TEL:")){
-                intent.putExtra(ContactsContract.Intents.Insert.PHONE, sp.replace("TEL:",""));
-            }else if(sp.startsWith("EMAIL:")){
-                intent.putExtra(ContactsContract.Intents.Insert.EMAIL, sp.replace("EMAIL:",""));
-            }else if(sp.startsWith("EMAIL:")){
-                intent.putExtra(ContactsContract.Intents.Insert.EMAIL, sp.replace("EMAIL:",""));
-            }/*else if(sp.startsWith("URL:")){
+                raw_data = raw_data.replace("MECARD:", "");
+                split_data = raw_data.split(";");
+                for (String sp : split_data) {
+                    if (sp.startsWith("N:")) {
+                        intent.putExtra(ContactsContract.Intents.Insert.NAME, sp.replace("N:", ""));
+                    } else if (sp.startsWith("TEL:")) {
+                        intent.putExtra(ContactsContract.Intents.Insert.PHONE, sp.replace("TEL:", ""));
+                    } else if (sp.startsWith("EMAIL:")) {
+                        intent.putExtra(ContactsContract.Intents.Insert.EMAIL, sp.replace("EMAIL:", ""));
+                    } else if (sp.startsWith("EMAIL:")) {
+                        intent.putExtra(ContactsContract.Intents.Insert.EMAIL, sp.replace("EMAIL:", ""));
+                    }/*else if(sp.startsWith("URL:")){
                 intent.putExtra(ContactsContract.Intents.Insert.DATA, sp.replace("URL:",""));
             }else if(sp.startsWith("ADR:")){
                 intent.putExtra(ContactsContract.Intents.Insert.POSTAL, sp.replace("ADR:",""));
             }*/
-        }
+                }
 
 
 /*
         intent.putExtra(ContactsContract.Intents.Insert.EMAIL, "ar.rafiq@live.com");
         intent.putExtra(ContactsContract.Intents.Insert.COMPANY,"Growthwell");*/
 
-        getActivity().startActivity(intent);
-        break;
-    case Global.QR_SCAN_TYPE.WIFI:
-        raw_data=raw_data.replace("WIFI:","");
-        split_data=raw_data.split(";");
-        String SSID="",PASS="",TYPE="";
-        boolean isHidden=false;
-        for(String r:split_data){
-            L.c("SP "+r);
-            if(r.startsWith("S:")){
-                SSID=r.replace("S:","");
-            }else if(r.startsWith("P:")){
-                PASS=r.replace("P:","");
-            }else if(r.startsWith("T:")){
-                TYPE=r.replace("T:","");
-            }else if(r.startsWith("H:")){
-                isHidden=true;
-            }
-        }
-        WifiManager wifiManager = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);
-        // setup a wifi configuration
-        WifiConfiguration conf = new WifiConfiguration();
-        if(SSID.equals("")){
-            Global.alert(getActivity(),"Bad Encoding","SSID is Missing",true);
-        }else {
-            conf.SSID = "\"" + SSID + "\"";
-
-            if(!TYPE.equals("")){
-                if(TYPE.equals("WPA")) {
-                    conf.preSharedKey = "\""+ PASS +"\"";
-                }else if(TYPE.equals("WEP")) {
-                    conf.wepKeys[0] = "\"" + PASS + "\"";
-                    conf.wepTxKeyIndex = 0;
-                    conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
-                    conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);
-                }
-            }else{
-                conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
-            }
-            wifiManager.addNetwork(conf);
-
-
-        }
-        List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
-        for( WifiConfiguration i : list ) {
-            if(i.SSID != null && i.SSID.equals("\"" + SSID + "\"")) {
-                wifiManager.disconnect();
-                wifiManager.enableNetwork(i.networkId, true);
-                wifiManager.reconnect();
-
+                getActivity().startActivity(intent);
                 break;
-            }
+            case Global.QR_SCAN_TYPE.WIFI:
+                raw_data = raw_data.replace("WIFI:", "");
+                split_data = raw_data.split(";");
+                String SSID = "", PASS = "", TYPE = "";
+                boolean isHidden = false;
+                for (String r : split_data) {
+                    L.c("SP " + r);
+                    if (r.startsWith("S:")) {
+                        SSID = r.replace("S:", "");
+                    } else if (r.startsWith("P:")) {
+                        PASS = r.replace("P:", "");
+                    } else if (r.startsWith("T:")) {
+                        TYPE = r.replace("T:", "");
+                    } else if (r.startsWith("H:")) {
+                        isHidden = true;
+                    }
+                }
+                WifiManager wifiManager = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);
+                // setup a wifi configuration
+                WifiConfiguration conf = new WifiConfiguration();
+                if (SSID.equals("")) {
+                    Global.alert(getActivity(), "Bad Encoding", "SSID is Missing", true);
+                } else {
+                    conf.SSID = "\"" + SSID + "\"";
+
+                    if (!TYPE.equals("")) {
+                        if (TYPE.equals("WPA")) {
+                            conf.preSharedKey = "\"" + PASS + "\"";
+                        } else if (TYPE.equals("WEP")) {
+                            conf.wepKeys[0] = "\"" + PASS + "\"";
+                            conf.wepTxKeyIndex = 0;
+                            conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+                            conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);
+                        }
+                    } else {
+                        conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+                    }
+                    wifiManager.addNetwork(conf);
+
+
+                }
+                List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+                for (WifiConfiguration i : list) {
+                    if (i.SSID != null && i.SSID.equals("\"" + SSID + "\"")) {
+                        wifiManager.disconnect();
+                        wifiManager.enableNetwork(i.networkId, true);
+                        wifiManager.reconnect();
+
+                        break;
+                    }
+                }
+                break;
         }
-        break;
-}
     }
 }

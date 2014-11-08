@@ -3,12 +3,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ddd"
+    style="@style/page_background"
     android:padding="8dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
+
         android:padding="8dp"
         android:layout_marginBottom="5dp">
         <TextView
@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Scanned Result"
+            style="@style/header_green"
             android:id="@+id/textView" />
         </LinearLayout>
     <ScrollView
@@ -29,8 +30,7 @@
             android:layout_height="match_parent"
             android:minHeight="150dp"
             android:padding="7dp"
-            android:orientation="vertical"
-            android:background="#fff">
+            android:orientation="vertical">
             <WebView
                 android:id="@+id/web_output"
                 android:layout_width="match_parent"

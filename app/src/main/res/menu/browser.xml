@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.growthwell.android.viewitquick.Browser" >
+    tools:context="com.growthwell.android.plickr.Browser" >
     <item android:id="@+id/scan_again"
         android:title="@string/scan"
         android:orderInCategory="100"

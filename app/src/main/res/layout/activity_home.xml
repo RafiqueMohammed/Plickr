@@ -10,13 +10,13 @@
         android:layout_height="match_parent" />
 
 <ListView
-    android:background="#333"
-
+    android:layout_gravity="start"
     android:layout_width="100dp"
     android:layout_height="match_parent"
     android:id="@+id/slide_list"
-
-    android:layout_gravity="start"
+    style="@style/page_background"
+    android:divider="#555"
+    android:dividerHeight="0.5dp"
     />
 
 </android.support.v4.widget.DrawerLayout>

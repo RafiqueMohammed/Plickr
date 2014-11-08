@@ -1,31 +1,31 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#fff"
     android:layout_height="match_parent"
-    android:background="#222"
-    tools:context="com.growthwell.android.viewitquick.Splash"
+    tools:context="com.growthwell.android.plickr.Splash"
     android:id="@+id/splash_activity_layout">
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:gravity="center_vertical">
+
+      <ImageView
+          android:gravity="center"
+          android:src="@drawable/plickr"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/row_icon"/>
+      <TextView
+          android:gravity="center"
+          android:padding="5dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textColor="#333"
+          android:text="BETA Version 1.0.1"
+          android:id="@+id/beta_txt"/>
+      </LinearLayout>
 
 
-    <ImageView
-
-        android:src="@drawable/plickr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/row_icon" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#555"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Plickr.in"
-        android:id="@+id/textView2"
-        android:layout_alignBottom="@+id/row_icon"
-        android:layout_alignRight="@+id/row_icon"
-        android:layout_alignEnd="@+id/row_icon" />
-
-
-</RelativeLayout>
+</LinearLayout>

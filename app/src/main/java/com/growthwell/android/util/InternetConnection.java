@@ -6,9 +6,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 
-//import com.google.android.gms.gcm.GoogleCloudMessaging;
-
-import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -27,50 +24,59 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+//import com.google.android.gms.gcm.GoogleCloudMessaging;
+
 public class InternetConnection {
 
-    public static boolean isConnectingToInternet(Context c){
+    public static boolean isConnectingToInternet(Context c) {
         ConnectivityManager connectivity = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivity != null)
-        {
+        if (connectivity != null) {
             NetworkInfo[] info = connectivity.getAllNetworkInfo();
             if (info != null)
-                for(int i = 0; i < info.length; i++)
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED)
-                    {
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
                         return true;
                     }
 
         }
         return false;
     }
-    public static class connect extends AsyncTask<String,String,JSONObject>{
+
+    public interface ConnectionProcessListener {
+        public void started();
+
+        public void finished();
+
+        public void onProgressUpdated(String i);
+    }
+
+    public static class connect extends AsyncTask<String, String, JSONObject> {
+        public final int POST_TYPE = 2;
+        public final int GET_TYPE = 1;
         String url;
         JSONObject result;
-        public final int POST_TYPE=2;
-        public final int GET_TYPE=1;
-        private int connection_type=1;
         List<NameValuePair> post_data;
         ConnectionProcessListener callback;
+        private int connection_type = 1;
 
-        public connect(){
+        public connect() {
 
-            result=new JSONObject();
-            post_data=new ArrayList<NameValuePair>();
+            result = new JSONObject();
+            post_data = new ArrayList<NameValuePair>();
 
         }
 
-        public void setCallbackListener(Fragment c){
-            callback= (ConnectionProcessListener) c;
+        public void setCallbackListener(Fragment c) {
+            callback = (ConnectionProcessListener) c;
         }
 
-        public void setType(int type){
-            this.connection_type=type;
+        public void setType(int type) {
+            this.connection_type = type;
         }
 
-        public void setPostData(ArrayList<NameValuePair> data){
+        public void setPostData(ArrayList<NameValuePair> data) {
             L.c("setPostData Added");
-            post_data=data;
+            post_data = data;
         }
 
         @Override
@@ -82,6 +88,7 @@ public class InternetConnection {
         @Override
         protected void onProgressUpdate(String... val) {
             super.onProgressUpdate(val);
+            L.c("ASYNC CALLBACK PROGRESSUPDATE "+val[0]);
             callback.onProgressUpdated(val[0]);
         }
 
@@ -89,52 +96,53 @@ public class InternetConnection {
         protected void onPostExecute(JSONObject jsonObject) {
             super.onPostExecute(jsonObject);
             callback.finished();
+
         }
 
         @Override
         protected JSONObject doInBackground(String... urls) {
-            url=urls[0];
+            url = urls[0];
             int statusCode;
-            HttpClient conn=new DefaultHttpClient();
+            HttpClient conn = new DefaultHttpClient();
 
 
-            if(urls.length!=0){
+            if (urls.length != 0) {
                 try {
                     HttpResponse response;
-                    if(this.connection_type==POST_TYPE){
-                        HttpPost request=new HttpPost(url);
-                        if(post_data!=null){
+                    if (this.connection_type == POST_TYPE) {
+                        HttpPost request = new HttpPost(url);
+                        if (post_data != null) {
                             request.setEntity(new UrlEncodedFormEntity(post_data));
                         }
                         L.c("REQUESTING POST TYPE");
-                        response =conn.execute(request);
-                    }else{
+                        response = conn.execute(request);
+                    } else {
                         L.c("REQUESTING GET TYPE");
-                        HttpGet request=new HttpGet(url);
-                        response =conn.execute(request);
+                        HttpGet request = new HttpGet(url);
+                        response = conn.execute(request);
                     }
 
 
-                    statusCode=response.getStatusLine().getStatusCode();
-                    long total_size=response.getEntity().getContentLength();
+                    statusCode = response.getStatusLine().getStatusCode();
+                    long total_size = response.getEntity().getContentLength();
 
-                    String output="";
-                    InputStream is=response.getEntity().getContent();
-                    BufferedReader bf=new BufferedReader(new InputStreamReader(is));
+                    String output = "";
+                    InputStream is = response.getEntity().getContent();
+                    BufferedReader bf = new BufferedReader(new InputStreamReader(is));
 
 
-                    String word="";
+                    String word = "";
                     long len_count = 0;
-                    while((word=bf.readLine())!=null){
+                    while ((word = bf.readLine()) != null) {
 
-                        len_count+=word.length();
-                        publishProgress(""+(int)((len_count*100)/total_size));
+                        len_count += word.length();
+                        publishProgress("" + (int) ((len_count * 100) / total_size));
 
-                        output+=word;
+                        output += word;
                     }
                     L.c(output);
                     //JSONObject json_result=new JSONObject(output);
-                    result=new JSONObject(output);
+                    result = new JSONObject(output);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (ClientProtocolException e) {
@@ -143,12 +151,12 @@ public class InternetConnection {
                     e.printStackTrace();
                 }
 
-            }else{
+            } else {
 
                 try {
 
-                    result.put("status","no");
-                    result.put("result","Url is empty.Please specify URL to connect");
+                    result.put("status", "no");
+                    result.put("result", "Url is empty.Please specify URL to connect");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -156,12 +164,6 @@ public class InternetConnection {
             }
             return result;
         }
-    }
-
-    public interface ConnectionProcessListener{
-        public void started();
-        public void finished();
-        public void onProgressUpdated(String i);
     }
 
 }

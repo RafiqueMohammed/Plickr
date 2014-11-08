@@ -35,10 +35,14 @@ Do you want to generate QR code anyway?</string>
     <string name="f_feedback_email">Email</string>
     <string name="f_feedback_fullname">Full Name</string>
     <string name="f_feedback_text_desc">If you have any suggestions or bug or issue to report. Please contact us below.</string>
-    <string name="f_feedback_title">Feedback / Report Bug</string>
+    <string name="f_feedback_title">Feedback</string>
     <string name="f_qr_web_url">Enter the URL</string>
     <string name="f_qr_web_shorturl">Short URL</string>
     <string name="f_qr_web_shortbtn">Shorten URL</string>
     <string name="f_qr_web_generatebtn">Generate QR</string>
     <string name="back">Go Back</string>
+    <string name="version">VERSION 1.X</string>
+    <string name="no_auto_focus">No Auto Focus Feature</string>
+    <string name="no_auto_focus_desc">Your device doesn\'t have the camera auto-focus feature. You can scan QR codes but small sized QR codes may fail to recognize by the app</string>
+
 </resources>

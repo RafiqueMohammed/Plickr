@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-    android:background="#222"
+    style="@style/page_background"
         >
 
 <LinearLayout
@@ -81,14 +81,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
-            android:text="@string/f_feedback_title"
-            style="@style/header_green"
-            android:layout_marginBottom="15dp"
-            />
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_feedback"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/f_feedback_title"
+                style="@style/header_green"
+                android:layout_marginBottom="15dp"
+                />
+        </LinearLayout>
+
+
         <TextView
             android:padding="10dp"
             android:layout_width="match_parent"
@@ -103,12 +114,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/f_feedback_fullname"
             android:layout_margin="5dp"
             style="@style/font_green"/>
         <EditText
+            android:singleLine="true"
             android:id="@+id/in_fname"
             style="@style/font_green"
             android:layout_margin="5dp"
@@ -132,6 +145,7 @@
             android:layout_margin="5dp"
             style="@style/font_green"/>
         <EditText
+            android:singleLine="true"
             android:id="@+id/in_email"
             style="@style/font_green"
             android:layout_margin="5dp"
